@@ -11,6 +11,11 @@ public class RelationSimple {
     	store.add(t);
     }
 
+    // used by relvar to build relation
+    protected void add(Collection<Tuple> store) {
+    	this.store = store;
+    }
+
     // return UNION of this Relation and r
     public RelationSimple union(RelationSimple r) {
         RelationSimple result = new RelationSimple();

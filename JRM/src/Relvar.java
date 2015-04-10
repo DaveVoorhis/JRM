@@ -25,9 +25,8 @@ public class Relvar {
 	
 	public RelationSimple getRelationSimple() {
 		RelationSimple r = new RelationSimple();
-		for (Tuple t: store)
-			r.add(t);
+		r.add(store);
 		return r;
 	}
-	
+
 }
