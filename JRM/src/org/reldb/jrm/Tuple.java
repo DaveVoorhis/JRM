@@ -1,3 +1,4 @@
+package org.reldb.jrm;
 
 public class Tuple implements Comparable<Tuple> {
 	private String contents;
