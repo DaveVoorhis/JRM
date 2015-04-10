@@ -1,41 +1,45 @@
 package org.reldb.jrm;
 
-
 import java.util.Collection;
 import java.util.HashSet;
 
-public abstract class RelationPipelined {
-	// Get the next Tuple, return null if there isn't one.
-	public abstract Tuple getNext();
-
-	// return UNION of this Relation and r
-	public RelationPipelined union(RelationPipelined r) {
-		return new RelationPipelined() {
+public class RelationPipelined {
+	// return UNION
+	public static TBag union(TBag b1, TBag b2) {
+		return new TBag() {
 			public Tuple getNext() {
-				Tuple t = RelationPipelined.this.getNext();
-				if (t == null)
-					t = r.getNext();
-				return t;
-			}
-		}.deduplicate();
-	}
-
-	protected RelationPipelined deduplicate() {
-		return new RelationPipelined() {
-			Collection<Tuple> nodups = new HashSet<Tuple>();
-
-			public Tuple getNext() {
-				while (true) {
-					Tuple t = RelationPipelined.this.getNext();
-					if (t == null)
-						return t;
-					if (nodups.contains(t))
-						continue;
-					nodups.add(t);
+				Tuple t = b1.getNext();
+				if (t != null)
 					return t;
-				}
+				else
+					return b2.getNext();
 			}
 		};
+	}
+
+	public static TSet unduplicate(TBag bag) {
+		if (bag.getDuplicateStatus() == 2)
+			return new TSet() {
+				Tuple getNext() {
+					return bag.getNext();
+				}
+			};
+		else
+			return new TSet() {
+				Collection<Tuple> undup = new HashSet<Tuple>();
+
+				Tuple getNext() {
+					while (true) {
+						Tuple t = bag.getNext();
+						if (t == null)
+							return t;
+						if (undup.contains(t))
+							continue;
+						undup.add(t);
+						return t;
+					}
+				}
+			};
 	}
 
 }

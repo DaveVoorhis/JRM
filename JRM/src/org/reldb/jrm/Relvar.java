@@ -12,8 +12,8 @@ public class Relvar {
 		store.add(t);
 	}
 
-	public RelationPipelined getRelationPipelined() {
-		return new RelationPipelined() {
+	public TSet getTSet() {
+		return new TSet() {
 			Iterator<Tuple> tuples = store.iterator();
 
 			public Tuple getNext() {

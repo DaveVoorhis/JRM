@@ -22,7 +22,7 @@ public class Main {
 		
 		System.out.println("== RelationPipelined ==");
 		
-		RelationPipelined resultP = rv1.getRelationPipelined().union(rv2.getRelationPipelined());
+		TSet resultP = RelationPipelined.unduplicate(RelationPipelined.union(rv1.getTSet(), rv2.getTSet()));
 		Tuple t;
 		while ((t = resultP.getNext()) != null)
 			System.out.println(t.toString());
