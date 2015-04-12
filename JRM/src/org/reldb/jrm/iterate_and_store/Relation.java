@@ -1,9 +1,11 @@
-package org.reldb.jrm;
+package org.reldb.jrm.iterate_and_store;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-public class RelationSimple {
+import org.reldb.jrm.Tuple;
+
+public class Relation {
     private Collection<Tuple> store = new HashSet<Tuple>();
 
     // used to build relation
@@ -17,8 +19,8 @@ public class RelationSimple {
     }
 
     // return UNION of this Relation and r
-    public RelationSimple union(RelationSimple r) {
-        RelationSimple result = new RelationSimple();
+    public Relation union(Relation r) {
+        Relation result = new Relation();
         for (Tuple t: store)
             result.add(t);
         for (Tuple t: r.store)

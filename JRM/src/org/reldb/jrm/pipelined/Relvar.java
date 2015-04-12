@@ -1,8 +1,10 @@
-package org.reldb.jrm;
+package org.reldb.jrm.pipelined;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+
+import org.reldb.jrm.Tuple;
 
 public class Relvar {
 
@@ -22,12 +24,6 @@ public class Relvar {
 				return null;
 			}
 		};
-	}
-
-	public RelationSimple getRelationSimple() {
-		RelationSimple r = new RelationSimple();
-		r.add(store);
-		return r;
 	}
 
 }

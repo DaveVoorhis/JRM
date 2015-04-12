@@ -1,4 +1,6 @@
-package org.reldb.jrm;
+package org.reldb.jrm.pipelined;
+
+import org.reldb.jrm.Tuple;
 
 public class Main {
 
@@ -12,16 +14,8 @@ public class Main {
 		rv2.insert(new Tuple("four"));
 		rv2.insert(new Tuple("two"));
 		rv2.insert(new Tuple("five"));
-
-		System.out.println("== RelationSimple ==");
 		
-		RelationSimple resultS = rv1.getRelationSimple().union(rv2.getRelationSimple());
-		for (Tuple t: resultS.getTuples())
-			System.out.println(t.toString());
-		
-		System.out.println("== RelationPipelined ==");
-		
-		TSet resultP = RelationPipelined.unduplicate(RelationPipelined.union(rv1.getTSet(), rv2.getTSet()));
+		TSet resultP = Relation.unduplicate(Relation.union(rv1.getTSet(), rv2.getTSet()));
 		Tuple t;
 		while ((t = resultP.getNext()) != null)
 			System.out.println(t.toString());

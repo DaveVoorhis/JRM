@@ -1,4 +1,6 @@
-package org.reldb.jrm;
+package org.reldb.jrm.pipelined;
+
+import org.reldb.jrm.Tuple;
 
 abstract class TBag {
 	abstract Tuple getNext();

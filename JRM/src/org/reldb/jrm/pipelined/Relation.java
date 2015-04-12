@@ -1,9 +1,11 @@
-package org.reldb.jrm;
+package org.reldb.jrm.pipelined;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-public class RelationPipelined {
+import org.reldb.jrm.Tuple;
+
+public class Relation {
 	// return UNION
 	public static TBag union(TBag b1, TBag b2) {
 		return new TBag() {
