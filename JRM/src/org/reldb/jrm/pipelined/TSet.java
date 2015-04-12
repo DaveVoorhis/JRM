@@ -1,7 +1,7 @@
 package org.reldb.jrm.pipelined;
 
 abstract class TSet extends TBag {
-	int getDuplicateStatus() {
-		return 2;
+	DuplicateStatus getDuplicateStatus() {
+		return DuplicateStatus.NO_DUPLICATES;
 	}
 }

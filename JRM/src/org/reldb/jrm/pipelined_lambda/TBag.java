@@ -4,9 +4,15 @@ import org.reldb.jrm.Tuple;
 
 @FunctionalInterface
 interface TBag {
+	enum DuplicateStatus {
+		DUPLICATES,
+		NO_DUPLICATES,
+		UNKNOWN
+	};
+	
 	abstract Tuple getNext();
 
-	default int getDuplicateStatus() {
-		return 0;
+	default DuplicateStatus getDuplicateStatus() {
+		return DuplicateStatus.UNKNOWN;
 	}
 }

@@ -20,7 +20,7 @@ public class Relation {
 	}
 
 	public static TSet unduplicate(TBag bag) {
-		if (bag.getDuplicateStatus() == 2)
+		if (bag.getDuplicateStatus() == TBag.DuplicateStatus.NO_DUPLICATES)
 			return new TSet() {
 				Tuple getNext() {
 					return bag.getNext();

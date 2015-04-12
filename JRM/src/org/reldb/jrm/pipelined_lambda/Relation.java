@@ -17,8 +17,9 @@ public class Relation {
 		};
 	}
 
+	// Remove duplicates
 	public static TSet unduplicate(TBag bag) {
-		if (bag.getDuplicateStatus() == 2)
+		if (bag.getDuplicateStatus() == TBag.DuplicateStatus.NO_DUPLICATES)
 			return () -> bag.getNext();
 		else {
 			Collection<Tuple> undup = new HashSet<Tuple>();
